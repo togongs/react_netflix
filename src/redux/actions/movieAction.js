@@ -3,22 +3,23 @@ import { movieActions } from "../reducers/movieReducer";
 
 // 일반 function으로 비동기처리
 function getMovies() {
+  const abc = process.env.REACT_APP_API_KEY;
   return async (dispatch) => {
     try {
       // loading 도착전
       dispatch(movieActions.loadingSuccess({ loading: true }));
 
       const popularMovieApi = api.get(
-        `/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`
+        `/movie/popular?api_key=${abc}&language=en-US&page=1`
       );
       const topRateApi = api.get(
-        `/movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`
+        `/movie/top_rated?api_key=${abc}&language=en-US&page=1`
       );
       const upComingApi = api.get(
-        `/movie/upcoming?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`
+        `/movie/upcoming?api_key=${abc}&language=en-US&page=1`
       );
       const genreApi = api.get(
-        `/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+        `/genre/movie/list?api_key=${abc}&language=en-US`
       );
 
       // 1번의 await로 병렬적으로 동시에 실행 전부 resolve될때까지 대기 :: 퍼포먼스 향상
