@@ -6,7 +6,6 @@ import { movieAction } from "../redux/actions/movieAction";
 import Pagination from "react-js-pagination";
 import MovieList from "../components/MovieList";
 import InputRange from "react-input-range";
-import "react-input-range/lib/css/index.css";
 import { pagination, search, getMovies } from "../redux/reducers/movieReducer";
 
 const Movies = () => {
