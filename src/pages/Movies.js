@@ -5,7 +5,6 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { movieAction } from "../redux/actions/movieAction";
 import Pagination from "react-js-pagination";
 import MovieList from "../components/MovieList";
-import InputRange from "react-input-range";
 import { pagination, search, getMovies } from "../redux/reducers/movieReducer";
 
 const Movies = () => {
@@ -97,14 +96,14 @@ const Movies = () => {
             </Dropdown.Menu>
           </Dropdown>
           {/* <form action=""> */}
-          <InputRange
+          {/* <InputRange
             maxValue={2022}
             minValue={1990}
             // formatLabel={(value) => `$${value}`}
             value={range}
             onChange={getRangeMovies}
             onChangeComplete={(value) => console.log(value)}
-          />
+          /> */}
           {/* </form> */}
         </Col>
         <Col lg={8}>
