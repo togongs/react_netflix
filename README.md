@@ -14,4 +14,4 @@
 
 ### 배포서버
 
-- https://phenomenal-fudge-2c2751.netlify.app/
+- https://togongs-netflix.netlify.app
