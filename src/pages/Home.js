@@ -27,12 +27,14 @@ const Home = () => {
       {console.log("popularMovies", popularMovies)}
       <Banner movie={popularMovies?.results[0]} />
 
-      <h1>Popular Movie</h1>
-      <MovieSlide movies={popularMovies} />
-      <h1>Top rated Movie</h1>
-      <MovieSlide movies={topRateMovies} />
-      <h1>Upcoming Movie</h1>
-      <MovieSlide movies={upComingMovies} />
+      <div style={{ width: "80%", margin: "0 auto" }}>
+        <h1>Popular Movie</h1>
+        <MovieSlide movies={popularMovies} />
+        <h1>Top rated Movie</h1>
+        <MovieSlide movies={topRateMovies} />
+        <h1>Upcoming Movie</h1>
+        <MovieSlide movies={upComingMovies} />
+      </div>
     </div>
   );
 };

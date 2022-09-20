@@ -40,17 +40,16 @@ const MovieSlide = ({ movies }) => {
         infinite={true}
         keyBoardControl={true}
         // customTransition="all .5"
+        autoPlay={true}
+        autoPlaySpeed={7000}
         transitionDuration={500}
-        containerClass="carousel-container"
+        // centerMode={true}
         removeArrowOnDeviceType={["tablet", "mobile"]}
-        dotListClass="custom-dot-list-style"
-        itemClass="carousel-item-padding-40-px"
       >
-        {movies.results.map((item) => (
-          <MovieCard item={item} />
+        {movies.results.map((item, index) => (
+          <MovieCard item={item} key={index} />
         ))}
       </Carousel>
-      ;
     </div>
   );
 };

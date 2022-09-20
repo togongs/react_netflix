@@ -85,8 +85,21 @@ const Movies = () => {
       <Row>
         <Col lg={4}>
           <Dropdown onSelect={selectedItem}>
-            <Dropdown.Toggle variant="success" id="dropdown-basic">
-              {title ? title : "NONE"}
+            <Dropdown.Toggle
+              variant="black"
+              id="dropdown-basic"
+              style={{
+                fontSize: "16px",
+                fontWeight: "500",
+                color: "#fff",
+                display: "flex",
+                alignItems: "center",
+                border: "1px solid white",
+                width: "300px",
+                height: "60px",
+              }}
+            >
+              {title ? title : "Sort"}
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
@@ -106,9 +119,10 @@ const Movies = () => {
           /> */}
           {/* </form> */}
         </Col>
+
+        {/* 리스트 컴포넌트 분리 */}
         <Col lg={8}>
           <Row>
-            {/* 리스트 컴포넌트 분리 */}
             <MovieList sort={sort} />
           </Row>
         </Col>
