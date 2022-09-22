@@ -13,6 +13,7 @@ let initialState = {
   recommend: "",
   trailer: "",
   sortedMovie: [],
+  searchMovies: "",
 };
 
 export const getMovies = createAsyncThunk(
@@ -254,7 +255,7 @@ const movieSlice = createSlice({
     },
     [search.fulfilled]: (state, action) => {
       console.log("fulfilled 상태", action);
-      state.popularMovies = action.payload.data;
+      state.searchMovies = action.payload.data;
     },
     [search.rejected]: (state, action) => {
       console.log("rejected 상태", action);
