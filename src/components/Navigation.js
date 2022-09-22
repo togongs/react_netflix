@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Container, Form, Navbar, Nav, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import { BsSearch } from "react-icons/bs";
 
 const Navigation = () => {
   const [search, setSearch] = useState("");
@@ -60,7 +61,7 @@ const Navigation = () => {
               // value={search}
             />
             <Button variant="outline-danger" onClick={searchButton}>
-              Search
+              <BsSearch />
             </Button>
           </Form>
         </Navbar.Collapse>

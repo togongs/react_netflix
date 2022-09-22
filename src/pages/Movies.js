@@ -8,7 +8,7 @@ import MovieList from "../components/MovieList";
 import { pagination, search, getMovies } from "../redux/reducers/movieReducer";
 
 const Movies = () => {
-  const { popularMovies, genreList } = useSelector((state) => state.movie);
+  const { popularMovies } = useSelector((state) => state.movie);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
@@ -43,19 +43,7 @@ const Movies = () => {
   const selectedItem = (eventKey, event) => {
     console.log("eventKey", eventKey);
     setTitle(event.target.text);
-    if (eventKey == 1) {
-      let list = [...popularMovies.results];
-      // return;
-      list.sort((a, b) => b.popularity - a.popularity);
-      setSort(list);
-    } else if (eventKey == 2) {
-      let list = [...popularMovies.results];
-      list.sort((a, b) => a.popularity - b.popularity);
-      setSort(list);
-    } else {
-      let list = [...popularMovies.results];
-      setSort(list);
-    }
+    dispatch(pagination({ page, size, eventKey }));
   };
 
   const sortMenu = [

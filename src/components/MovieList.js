@@ -5,15 +5,15 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { BsFillPeopleFill, BsFillShieldFill, BsFilm } from "react-icons/bs";
 
 const MovieList = ({ sort }) => {
-  const { popularMovies, genreList } = useSelector((state) => state.movie);
+  const { popularMovies, genreList, sortedMovie } = useSelector(
+    (state) => state.movie
+  );
   const navigate = useNavigate();
-  {
-    console.log("popularMovies", popularMovies);
-  }
+  console.log("sortedMovie", sortedMovie);
   return (
     <>
-      {sort
-        ? sort.map((item) => (
+      {sortedMovie
+        ? sortedMovie?.map((item) => (
             <div
               className="movies-banner"
               style={{

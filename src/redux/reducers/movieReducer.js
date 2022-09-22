@@ -12,6 +12,7 @@ let initialState = {
   reviews: "",
   recommend: "",
   trailer: "",
+  sortedMovie: [],
 };
 
 export const getMovies = createAsyncThunk(
@@ -107,12 +108,19 @@ export const Trailer = createAsyncThunk(
 export const pagination = createAsyncThunk(
   "movie/pagination",
   async (data, thunkAPI) => {
-    const { page, size } = data;
+    const { page, size, eventKey } = data;
     try {
       const popularMovieApi = await api.get(
         `/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}&size=${size}`
       );
-      return thunkAPI.fulfillWithValue(popularMovieApi);
+      const resData = popularMovieApi.data;
+      console.log("resData", resData);
+      if (data.eventKey == 1) {
+        resData.results.sort((a, b) => b.popularity - a.popularity);
+      } else if (data.eventKey == 2) {
+        resData.results.sort((a, b) => a.popularity - b.popularity);
+      }
+      return thunkAPI.fulfillWithValue(resData);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -188,11 +196,11 @@ const movieSlice = createSlice({
     },
 
     [detailMovie.pending]: (state, action) => {
-      console.log("pending 상태", action); // Promise가 pending일때 dispatch
+      console.log("pending 상태", action);
       state.loading = true;
     },
     [detailMovie.fulfilled]: (state, action) => {
-      console.log("fulfilled 상태", action); // Promise가 fullfilled일 때 dispatch
+      console.log("fulfilled 상태", action);
       state.selectedMovie = action.payload.selected.data;
       state.reviews = action.payload.reviews.data;
       state.recommend = action.payload.recommended.data;
@@ -200,45 +208,45 @@ const movieSlice = createSlice({
       state.loading = false;
     },
     [detailMovie.rejected]: (state, action) => {
-      console.log("rejected 상태", action); // Promise가 rejected일 때 dispatch
+      console.log("rejected 상태", action);
       state.loading = true;
-      state.error = action.payload; // catch 된 error 객체를 state.error에 넣습니다.
+      state.error = action.payload;
     },
 
     [Trailer.pending]: (state, action) => {
-      console.log("pending 상태", action); // Promise가 pending일때 dispatch
+      console.log("pending 상태", action);
     },
     [Trailer.fulfilled]: (state, action) => {
-      console.log("fulfilled 상태", action); // Promise가 fullfilled일 때 dispatch
+      console.log("fulfilled 상태", action);
       state.trailer = action.payload.data;
     },
     [Trailer.rejected]: (state, action) => {
-      console.log("rejected 상태", action); // Promise가 rejected일 때 dispatch
-      state.error = action.payload; // catch 된 error 객체를 state.error에 넣습니다.
+      console.log("rejected 상태", action);
+      state.error = action.payload;
     },
 
     [pagination.pending]: (state, action) => {
-      console.log("pending 상태", action); // Promise가 pending일때 dispatch
+      console.log("pending 상태", action);
     },
     [pagination.fulfilled]: (state, action) => {
-      console.log("fulfilled 상태", action); // Promise가 fullfilled일 때 dispatch
-      state.popularMovies = action.payload.data;
+      console.log("fulfilled 상태", action);
+      state.sortedMovie = action.payload.results;
     },
     [pagination.rejected]: (state, action) => {
-      console.log("rejected 상태", action); // Promise가 rejected일 때 dispatch
-      state.error = action.payload; // catch 된 error 객체를 state.error에 넣습니다.
+      console.log("rejected 상태", action);
+      state.error = action.payload;
     },
 
     [search.pending]: (state, action) => {
-      console.log("pending 상태", action); // Promise가 pending일때 dispatch
+      console.log("pending 상태", action);
     },
     [search.fulfilled]: (state, action) => {
-      console.log("fulfilled 상태", action); // Promise가 fullfilled일 때 dispatch
+      console.log("fulfilled 상태", action);
       state.popularMovies = action.payload.data;
     },
     [search.rejected]: (state, action) => {
-      console.log("rejected 상태", action); // Promise가 rejected일 때 dispatch
-      state.error = action.payload; // catch 된 error 객체를 state.error에 넣습니다.
+      console.log("rejected 상태", action);
+      state.error = action.payload;
     },
   },
 });

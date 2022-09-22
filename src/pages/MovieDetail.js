@@ -245,7 +245,7 @@ const MovieDetail = () => {
                     "url(" +
                     `https://www.themoviedb.org/t/p/w300_and_h450_bestv2${item.poster_path}` +
                     ")",
-                  width: "40%",
+                  width: "450px",
                   height: "300px",
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",

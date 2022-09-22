@@ -24,7 +24,6 @@ const Home = () => {
   // loading false : 데이터 도착 후
   return (
     <div>
-      {console.log("popularMovies", popularMovies)}
       <Banner movie={popularMovies?.results[0]} />
 
       <div style={{ width: "80%", margin: "0 auto" }}>
