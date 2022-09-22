@@ -115,10 +115,22 @@ export const pagination = createAsyncThunk(
       );
       const resData = popularMovieApi.data;
       console.log("resData", resData);
-      if (data.eventKey == 1) {
+      if (data.eventKey == 2) {
         resData.results.sort((a, b) => b.popularity - a.popularity);
-      } else if (data.eventKey == 2) {
+      } else if (data.eventKey == 3) {
         resData.results.sort((a, b) => a.popularity - b.popularity);
+      } else if (data.eventKey == 4) {
+        resData.results.sort((a, b) =>
+          b.release_date < a.release_date ? -1 : 1
+        );
+      } else if (data.eventKey == 5) {
+        resData.results.sort((a, b) =>
+          a.release_date < b.release_date ? -1 : 1
+        );
+      } else if (data.eventKey == 6) {
+        resData.results.sort((a, b) => b.vote_average - a.vote_average);
+      } else if (data.eventKey == 7) {
+        resData.results.sort((a, b) => a.vote_average - b.vote_average);
       }
       return thunkAPI.fulfillWithValue(resData);
     } catch (error) {

@@ -44,7 +44,8 @@ const MovieList = ({ sort }) => {
                 <div style={{ flexDirection: "colum", marginLeft: "20px" }}>
                   <h3 className="title">{item.title}</h3>
                   <p style={{ color: "#9ac7fa" }}>
-                    {item.release_date.slice(0, 4)}
+                    {/* {item.release_date.slice(0, 4)} */}
+                    {item.release_date}
                   </p>
                 </div>
               </div>

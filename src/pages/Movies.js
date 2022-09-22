@@ -46,10 +46,16 @@ const Movies = () => {
     dispatch(pagination({ page, size, eventKey }));
   };
 
+  // 숫자 오름차순 return a - b
+  // 숫자 내림차순 return b - a
+  // 문자열 비교 b < a ? -1 : 1
   const sortMenu = [
-    { title: "NONE", key: 1 },
     { title: "popularity(DESC)", key: 2 },
     { title: "popularity(ASC)", key: 3 },
+    { title: "Release Day(RECENTLY)", key: 4 },
+    { title: "Release Day(LATE)", key: 5 },
+    { title: "Vote(DESC)", key: 6 },
+    { title: "Vote(ASC)", key: 7 },
   ];
 
   const getRangeMovies = (value) => {

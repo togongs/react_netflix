@@ -32,7 +32,8 @@ const Navigation = () => {
       <Container fluid>
         <Navbar.Brand href="#">
           <img
-            width={100}
+            width={130}
+            height={70}
             src="https://content.surfit.io/thumbs/image/wJW2K/w4VbJ/10552564055eb8333117a06.png/cover-center-2x.webp"
             alt=""
           />
@@ -41,7 +42,7 @@ const Navigation = () => {
         <Navbar.Collapse id="navbarScroll">
           <Nav
             className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: "100px" }}
+            style={{ maxHeight: "80px" }}
             navbarScroll
           >
             <Link to="/" className="nav-item">
