@@ -10,7 +10,6 @@ import { pagination, search, getMovies } from "../redux/reducers/movieReducer";
 const Movies = () => {
   const { popularMovies } = useSelector((state) => state.movie);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [page, setPage] = useState(1);
   const [size, setSize] = useState(0);
   const [query, setQuery] = useSearchParams();
@@ -34,11 +33,12 @@ const Movies = () => {
   // /movies page에 data 리스트업 해야한다
   // popularMovies state에 search한 api data를 update
   useEffect(() => {
+    setSize(popularMovies?.total_pages);
     let searchQuery = query.get("query") || "";
     console.log("쿼리값은?", searchQuery);
     dispatch(getMovies());
-    dispatch(search({ searchQuery }));
-  }, [query]);
+    dispatch(search({ searchQuery, page, size }));
+  }, [query, page, size]);
 
   const selectedItem = (eventKey, event) => {
     console.log("eventKey", eventKey);
